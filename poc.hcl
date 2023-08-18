@@ -1,3 +1,14 @@
+table "auth" "address" {
+  schema = schema.auth
+  column "id" {
+    null    = false
+    type    = uuid
+    default = sql("uuid_generate_v4()")
+  }
+  primary_key {
+    columns = [column.id]
+  }
+}
 table "email_token" {
   schema = schema.auth
   column "id" {
@@ -9,7 +20,6 @@ table "email_token" {
     null = false
     type = integer
   }
-  
   primary_key {
     columns = [column.id]
   }
@@ -20,15 +30,16 @@ table "email_token" {
     on_delete   = NO_ACTION
   }
 }
-
 table "user" {
   schema = schema.public
   column "id" {
     null = false
     type = serial
   }
+  primary_key {
+    columns = [column.id]
+  }
 }
-
 table "user" "address" {
   schema = schema.user
   column "uuid" {
@@ -50,14 +61,10 @@ table "user" "address" {
     on_delete   = NO_ACTION
   }
 }
-
 schema "auth" {
 }
-
 schema "public" {
   comment = "standard public schema"
 }
-
 schema "user" {
 }
-

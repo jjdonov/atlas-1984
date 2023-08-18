@@ -22,3 +22,9 @@ create table "user"."address" (
   primary key ("uuid"),
   constraint "address_user_id_foreign" foreign key ("user_id") references "public"."user"(id)
 );
+
+create table "auth"."address" (
+  "id" uuid NOT NULL DEFAULT uuid_generate_v4(),
+
+  primary key("id")
+);
